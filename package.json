@@ -13,6 +13,9 @@
   "keywords": [
     "fighting"
   ],
+  "dependencies": {
+    "express": "^4.18.2"
+  },
   "author": "mrmongkeyy",
   "license": "MIT",
   "bugs": {
