@@ -1,0 +1,88 @@
+body{
+	margin:0;
+	padding:0;
+}
+#bound{
+	position:absolute;
+	top:0;
+	left:0;
+	padding-left:5%;
+	padding-left:10%;
+	padding-right:5%;
+	padding-right:10%;
+	width:80%;
+	height:100%;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	background:rgb(255, 221, 131,0.5);
+}
+#bound-container{
+	background:white;
+	width:100%;
+	float:left;
+}
+#top{
+	width:96%;
+	display:flex;
+	padding:2%;
+	align-items:center;
+}
+#top div{
+	float:left;
+	font-size:32px;
+	cursor:pointer;
+}
+#top nav{
+	margin-left:20px;
+}
+#top nav div{
+	margin-left:10px;
+	font-size:20px;
+}
+#top nav div:hover{
+	text-decoration:underline;
+}
+#bottom{
+	width:96%;
+	display:flex;
+	padding:2%;
+	height:400px;
+	align-items:center;
+}
+#bottom div{
+	width:100%;
+	font-size:40px;
+	text-align:center;
+}
+#bottom div span{
+	background:black;
+	color:white;
+}
+.content-item{
+	margin:2%;
+	width:25%;
+	border:2px solid black;
+	padding:2%;
+	cursor:pointer;
+}
+.content-item img{
+	width:100%;
+}
+.content-item #title{
+	font-size:20px;
+}
+.content-item #price{
+	margin-top:10px;
+}
+.content-item #price span{
+	background:orange;
+	color:white;
+	padding:2px;
+}
+.content-item:hover #title{
+	text-decoration:underline;
+}
+@media screen and (max-width: 900px){
+	
+}

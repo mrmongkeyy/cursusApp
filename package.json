@@ -1,0 +1,22 @@
+{
+  "name": "mycourseapp",
+  "version": "1.0.0",
+  "description": "am gonna put all of my content, i will sell it.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrmongkeyy/courseApp.git"
+  },
+  "keywords": [
+    "fighting"
+  ],
+  "author": "mrmongkeyy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrmongkeyy/courseApp/issues"
+  },
+  "homepage": "https://github.com/mrmongkeyy/courseApp#readme"
+}
