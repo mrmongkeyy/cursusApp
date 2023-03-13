@@ -69,7 +69,7 @@ const app = {
 					#bound-top nav input{
 						background:white;
 						padding:10px;
-						border:none;
+						border:1px solid gray;
 						outline:none;
 					}
 					#bound-body{
