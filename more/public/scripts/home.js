@@ -35,6 +35,7 @@ const app = {
 	},
 	msgs:[
 		'"Selamat Datang Di Wawagu."',
+		'"Cek semua content yang telah kami sediakan, klik pada kursus"',
 		'"Wawagu menyediakan berbagai macam konten yang dirancang oleh ahli, sehingga terjamin kualitasnya."',
 		'"Kembangkan Potensi Anda!"'
 	],
@@ -53,15 +54,18 @@ const app = {
 						display:flex;
 						align-items:center;
 						padding:2%;
+						background:black;
 					}
 					#bound-top div{
 						font-size:20px;
 						margin-right:10px;
 						cursor:pointer;
+						color:white;
 					}
 					#bound-top nav{
 						display:flex;
 						width:100%;
+						align-items:center;
 					}
 					#bound-body{
 						width:96%;
@@ -82,17 +86,17 @@ const app = {
 					<nav>
 						<div>
 							<span>
-								<input>
+								<input placeholder="Cari kursus...">
 							</span>
 						</div>
 						<div>
-							<span>
+							<span class=bBlackWhite>
 								Cari
 							</span>
 						</div>
 					</nav>
 					<div style=float=right>
-						<span id=closeBound>
+						<span id=closeBound class=bBlackWhite>
 							Tutup
 						</span>
 					</div>
@@ -111,7 +115,32 @@ const app = {
 			app.loadContent();
 		},
 		aboutUs(e){
-			app.openPop();
+			const bound = app.openPop();
+			bound.appendChild(app.makeElement('div',{
+				id:'bound-container',
+				innerHTML:`
+					<style>
+						#bound-container{
+							width:auto;
+						}
+						#bound-container #msg{
+							padding:10px;
+							font-size:20px;
+							text-align:center;
+							margin-bottom:20px;
+						}
+					</style>
+					<div id=msg>
+						<span>Web Sedang Dalam Proses Pengembangan. <br>-mrmongkeyy</span>
+					</div>
+					<div style=text-align:center;>
+						<span class=bWhiteBlack style=padding:10px; id=closE>TUTUP</span>
+					</div>
+				`,
+			}));
+			bound.querySelector('#closE').onclick = ()=>{
+				bound.remove();
+			}
 		}
 	},
 	setupButton(){
@@ -135,6 +164,9 @@ const app = {
 				<div id=title>
 					<span>${content.title}</span>
 				</div>
+				<div id=description>
+					<span>${content.description||'No description'}</span>
+				</div>
 				<div id=price>
 					<span>${content.price}</span>
 				</div>
@@ -156,7 +188,79 @@ const app = {
 		setTimeout(()=>{this.contents.forEach((content,i)=>{this.processContent(content,i)})},1000);
 	},
 	showContent(index){
-		
+		const bound = this.openPop();
+		bound.appendChild(this.makeElement('div',{
+			className:'showContentPage',
+			innerHTML:`
+				<div id=top>
+					<div style=text-align:left;>Confirmasi Pembelian</div>
+					<div style=text-align:right><span class=bBlackWhite id=closE>Tutup</span></div>
+				</div>
+				<div id=bottom>
+					<div>
+						<div id=preview>
+							<span><img src=/file?fn=noimage.jpg id=previewImg></span>
+						</div>
+						<div id=sideO>
+							<div id=title>
+								<span>${this.contents[index].title}</span>
+							</div>
+							<div id=description>
+								<span>${this.contents[index].description||'No description'}</span>
+							</div>
+							<div id=bottomSection>
+								<div id=pricE>
+									<span>${this.contents[index].price}</span>
+								</div>
+								<div style=text-align:right;>
+									<span class=bWhiteBlack id=bayaR>BAYAR</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			`,
+		}));
+		bound.querySelector('#closE').onclick = ()=>{
+			bound.remove();
+		}
+		bound.querySelector('#bayaR').onclick = ()=>{
+			this.payment.init();
+		}
+	},
+	payment:{
+		open(){
+			const bound = app.openPop();
+			bound.appendChild(app.makeElement('div',{
+				id:'bound-container',
+				innerHTML:`
+					<style>
+						#bound-container{
+							width:auto;
+						}
+						#bound-container #msg{
+							padding:10px;
+							font-size:20px;
+							text-align:center;
+							margin-bottom:20px;
+						}
+					</style>
+					<div id=msg>
+						<span>PAYMENT API SEDANG DALAM PROSES INTEGRASI. <br>-mrmongkeyy</span>
+					</div>
+					<div style=text-align:center;>
+						<span class=bWhiteBlack style=padding:10px; id=closE>TUTUP</span>
+					</div>
+				`,
+			}));
+			bound.querySelector('#closE').onclick = ()=>{bound.remove()}
+		},
+		pay(){
+
+		},
+		init(){
+			this.open();
+		}
 	}
 }
 app.init();

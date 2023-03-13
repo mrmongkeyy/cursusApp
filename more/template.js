@@ -5,7 +5,7 @@ module.exports = {
 			<html>
 			<head>
 				<title>${config.title}</title>
-				<style>body{font-family:calibri}</style>
+				<style>body{font-family:calibri;user-select:none;}</style>
 				<meta name=viewport content=width=device-width,initial-scale=1>
 				<link rel=stylesheet href=/styles?fn=${config.style}>
 			</head>
@@ -36,16 +36,19 @@ module.exports = {
 						<div>
 							<span id=aboutUs>Tentang Kami</span>
 						</div>
-						<div>
-							<span>
-								<input placeholder="Temukan Kursusnya...">
-							</span>
+						<div id=searchTool style=display:flex;align-items:center>
+							<div>
+								<span>
+									<input placeholder="Temukan Kursusnya..." id=searchInput>
+								</span>
+							</div>
+							<div>
+								<span id=find class=bWhiteBlack>
+									Cari
+								</span>
+							</div>
 						</div>
-						<div>
-							<span id=cari>
-								Cari
-							</span>
-						</div>
+						
 					</nav>
 				</div>
 				<div id=bottom>

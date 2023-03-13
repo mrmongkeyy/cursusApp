@@ -22,40 +22,42 @@ body{
 	width:100%;
 	float:left;
 }
-#top{
+main #top{
 	width:96%;
 	display:flex;
 	padding:2%;
 	align-items:center;
 }
-#top div{
+main #top div{
 	float:left;
 	font-size:32px;
 	cursor:pointer;
 }
-#top nav{
+main #top nav{
 	margin-left:20px;
+	display:flex;
+	align-items:center;
 }
-#top nav div{
+main #top nav div{
 	margin-left:10px;
 	font-size:20px;
 }
-#top nav div:hover{
+main #top nav div:hover{
 	text-decoration:underline;
 }
-#bottom{
+main #bottom{
 	width:96%;
 	display:flex;
 	padding:2%;
 	height:400px;
 	align-items:center;
 }
-#bottom div{
+main #bottom div{
 	width:100%;
 	font-size:40px;
 	text-align:center;
 }
-#bottom div span{
+main #bottom div span{
 	background:black;
 	color:white;
 }
@@ -80,9 +82,91 @@ body{
 	color:white;
 	padding:2px;
 }
+.content-item #description{
+	font-size:12px;
+}
 .content-item:hover #title{
 	text-decoration:underline;
 }
-@media screen and (max-width: 900px){
-	
+.bWhiteBlack{
+	padding:5px;
+	color:white;
+	background:black;
+	cursor:pointer;
+}
+.bBlackWhite{
+	padding:5px;
+	color:black;
+	background:white;
+	cursor:pointer;
+}
+.showContentPage{
+	background:white;
+}
+.showContentPage #top{
+	display:flex;
+	align-items:center;
+	background:black;
+	padding:10px;
+}
+.showContentPage #top div{
+	width:50%;
+	color:white;
+}
+.showContentPage #bottom{
+	display:flex;
+	align-items:center;
+	padding:10px;
+	max-height:50%;
+	flex-direction:column;
+}
+.showContentPage #bottom #title{
+	font-size:32px;
+}
+.showContentPage #bottom #previewImg{
+	width:94%;
+	margin:3%;
+}
+.showContentPage #bottom div div{
+	float:left;
+	width:42%;
+	margin:2%;
+}
+.showContentPage #bottom div #sideO div{
+	float:left;
+	width:100%;
+}
+.showContentPage #bottom div #preview{
+	width:50%;
+	background:black;
+}
+.showContentPage #bottom div #sideO #pricE span{
+	background:orange;
+	color:white;
+	padding:5px;
+}
+.showContentPage #bottom div #sideO #description{
+	font-size:15px;
+}
+.showContentPage #bottom div #sideO #bottomSection div{
+	float:left;
+	width:46%;
+}
+input{
+	padding:5px;
+}
+@media only screen and (max-width: 900px){
+	#searchTool div{
+		display:none;
+	}
+	#bound-top nav div{
+		display:none;
+	}
+	.content-item{
+		width:90%;
+	}
+	#bound-body{
+		flex-wrap:nowrap;
+		justify-content:flex-start;
+	}
 }
