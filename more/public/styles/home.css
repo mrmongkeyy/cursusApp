@@ -27,6 +27,7 @@ main #top{
 	display:flex;
 	padding:2%;
 	align-items:center;
+	background:beige;
 }
 main #top div{
 	float:left;

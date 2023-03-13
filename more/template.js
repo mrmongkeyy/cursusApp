@@ -5,7 +5,7 @@ module.exports = {
 			<html>
 			<head>
 				<title>${config.title}</title>
-				<style>body{font-family:calibri;user-select:none;}</style>
+				<style>body{font-family:calibri;user-select:none;font-weight:bold;}</style>
 				<meta name=viewport content=width=device-width,initial-scale=1>
 				<link rel=stylesheet href=/styles?fn=${config.style}>
 			</head>

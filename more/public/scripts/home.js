@@ -35,7 +35,7 @@ const app = {
 	},
 	msgs:[
 		'"Selamat Datang Di Wawagu."',
-		'"Cek semua content yang telah kami sediakan, klik pada kursus"',
+		'"Cek semua content yang telah kami sediakan, klik pada kursus menu"',
 		'"Wawagu menyediakan berbagai macam konten yang dirancang oleh ahli, sehingga terjamin kualitasnya."',
 		'"Kembangkan Potensi Anda!"'
 	],
@@ -54,18 +54,23 @@ const app = {
 						display:flex;
 						align-items:center;
 						padding:2%;
-						background:black;
+						background:burlywood;
 					}
 					#bound-top div{
 						font-size:20px;
 						margin-right:10px;
 						cursor:pointer;
-						color:white;
 					}
 					#bound-top nav{
 						display:flex;
 						width:100%;
 						align-items:center;
+					}
+					#bound-top nav input{
+						background:white;
+						padding:10px;
+						border:none;
+						outline:none;
 					}
 					#bound-body{
 						width:96%;
@@ -90,13 +95,13 @@ const app = {
 							</span>
 						</div>
 						<div>
-							<span class=bBlackWhite>
+							<span class=bWhiteBlack>
 								Cari
 							</span>
 						</div>
 					</nav>
 					<div style=float=right>
-						<span id=closeBound class=bBlackWhite>
+						<span id=closeBound class=bWhiteBlack>
 							Tutup
 						</span>
 					</div>
@@ -168,7 +173,7 @@ const app = {
 					<span>${content.description||'No description'}</span>
 				</div>
 				<div id=price>
-					<span>${content.price}</span>
+					<span>RP. ${content.price}</span>
 				</div>
 			`,
 		});
@@ -210,7 +215,7 @@ const app = {
 							</div>
 							<div id=bottomSection>
 								<div id=pricE>
-									<span>${this.contents[index].price}</span>
+									<span>RP. ${this.contents[index].price}</span>
 								</div>
 								<div style=text-align:right;>
 									<span class=bWhiteBlack id=bayaR>BAYAR</span>
@@ -253,7 +258,7 @@ const app = {
 					</div>
 				`,
 			}));
-			bound.querySelector('#closE').onclick = ()=>{bound.remove()}
+			bound.querySelector('#closE').onclick = ()=>{bound.remove()};
 		},
 		pay(){
 
