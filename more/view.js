@@ -14,5 +14,8 @@ module.exports = {
 	},
 	home(){
 		this.res.send(template.make({title:'Kursus Online Wawagu',page:'home',style:'home',script:'home'}));
+	},
+	adminPanel(){
+		this.res.send(template.make({title:'Wawagu Admin Panel',page:'adminPanel',style:'home',script:'admin'}));
 	}
 }

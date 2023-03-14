@@ -1,5 +1,6 @@
 const view = require('./view.js');
 const fm = require('./fileH.js');
+const isAdmin = require('./isAdmin.js');
 module.exports = [
 	{
 		url:'/',
@@ -27,6 +28,15 @@ module.exports = [
 		mM:'get',
 		response(req,res){
 			fm.do(req,res);
+		}
+	},
+	{
+		url:'/verifyAdmin',
+		mM:'post',
+		response(req,res,app){
+			req.on('data',(data)=>{
+				isAdmin({data,res,app});
+			})
 		}
 	}
 ];

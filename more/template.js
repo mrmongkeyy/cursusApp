@@ -30,11 +30,21 @@ module.exports = {
 						<span>WAWAGU</span>
 					</div>
 					<nav>
-						<div>
-							<span id=kursus>Kursus</span>
+						<div id=desktopM>
+							<div>
+								<span id=kursus>Kursus</span>
+							</div>
+							<div>
+								<span id=aboutUs>Tentang Kami</span>
+							</div>
+							<div>
+								<span class=bWhiteBlack id=admin>ADMIN</span>
+							</div>
 						</div>
-						<div>
-							<span id=aboutUs>Tentang Kami</span>
+						<div id=mobileM>
+							<div>
+								<span class=bWhiteBlack id=menu>MENU</span>
+							</div>
 						</div>
 						<div id=searchTool style=display:flex;align-items:center>
 							<div>
@@ -48,7 +58,27 @@ module.exports = {
 								</span>
 							</div>
 						</div>
-						
+					</nav>
+				</div>
+				<div id=bottom>
+					<div id=aquote>
+					</div>
+				</div>
+			</main>
+		`;
+	},
+	adminPanel(config){
+		return `
+			<main>
+				<div id=top>
+					<div id=hightitle>
+						<span>ADMIN</span>
+					</div>
+					<nav>
+						<div id=desktopM>
+							<div>
+								<span id=kursus class=bWhiteBlack>Tambah Konten</span>
+							</div>
 					</nav>
 				</div>
 				<div id=bottom>

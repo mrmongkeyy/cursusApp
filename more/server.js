@@ -8,6 +8,7 @@ module.exports = {
 	Routes,
 	init(port){
 		this.setRoutes();
+		process.env.app = this.app;
 		this.run(port);
 	},
 	run(port){
@@ -16,7 +17,7 @@ module.exports = {
 	},
 	setRoutes(){
 		this.Routes.forEach((r)=>{
-			this.app[r.mM](r.url,(req,res)=>{r.response(req,res)});
+			this.app[r.mM](r.url,(req,res)=>{r.response(req,res,this.app)});
 		})
 	}
 }

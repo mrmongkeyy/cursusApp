@@ -159,6 +159,9 @@ main #bottom div span{
 	float:left;
 	width:46%;
 }
+#mobileM{
+	display:none;
+}
 input{
 	padding:9px;
 }
@@ -175,5 +178,13 @@ input{
 	#bound-body{
 		flex-wrap:nowrap;
 		justify-content:flex-start;
+	}
+}
+@media only screen and (max-width:470px){
+	#mobileM{
+		display:block;
+	}
+	#desktopM{
+		display:none;
 	}
 }

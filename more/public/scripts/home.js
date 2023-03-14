@@ -1,3 +1,26 @@
+const cOn = {
+	init(config={httpcallinit(){console.log(this)}}){
+		this.xhttp = new XMLHttpRequest();
+		Object.assign(this.xhttp,config);
+		if(config.httpcallinit)this.xhttp.httpcallinit();
+	},
+	send(){
+		this.xhttp.send(this.xhttp.data||'');
+	},
+	post(config){
+		this.init(config);
+		this.xhttp.open('POST',this.xhttp.url);
+		if(this.xhttp.afterOpen)this.xhttp.afterOpen();
+		this.send();
+	},
+	get(){
+		this.init(config);
+		this.xhttp.open('GET',this.xhttp.url);
+		if(this.xhttp.afterOpen)this.xhttp.afterOpen();
+		this.send();
+	}
+
+}
 const app = {
 	contents:undefined,
 	find(el){
@@ -39,8 +62,10 @@ const app = {
 		'"Wawagu menyediakan berbagai macam konten yang dirancang oleh ahli, sehingga terjamin kualitasnya."',
 		'"Kembangkan Potensi Anda!"'
 	],
-	makeElement(el,props){
-		return Object.assign(document.createElement(el),props||{});
+	makeElement(el,props={}){
+		props.find = function(el){return this.querySelector(el)};
+		props.findall = function(el){return this.querySelectorAll(el)};
+		return Object.assign(document.createElement(el),props);
 	},
 	eventButton:{
 		kursus(e){
@@ -114,7 +139,7 @@ const app = {
 					</div>
 				</div>
 			`}));
-			bound.querySelector('#closeBound').onclick = ()=>{
+			bound.find('#closeBound').onclick = ()=>{
 				bound.remove();
 			}
 			app.loadContent();
@@ -143,9 +168,15 @@ const app = {
 					</div>
 				`,
 			}));
-			bound.querySelector('#closE').onclick = ()=>{
+			bound.find('#closE').onclick = ()=>{
 				bound.remove();
 			}
+		},
+		menu(){
+			app.openMobileMenu();
+		},
+		admin(){
+			app.verifyAdmin();
 		}
 	},
 	setupButton(){
@@ -186,7 +217,7 @@ const app = {
 	loadContent(){
 		if(!this.contents){
 			document.body.appendChild(this.makeElement('script',{src:'/scripts?fn=content',onload(){
-				setTimeout(()=>{app.contents.forEach((content,i)=>{app.processContent(content,i)})},1000);
+				setTimeout(()=>{app.contents.forEach((content,i)=>{app.processContent(content,i)});this.remove();},1000);
 			}}));
 			return;
 		}
@@ -226,10 +257,10 @@ const app = {
 				</div>
 			`,
 		}));
-		bound.querySelector('#closE').onclick = ()=>{
+		bound.find('#closE').onclick = ()=>{
 			bound.remove();
 		}
-		bound.querySelector('#bayaR').onclick = ()=>{
+		bound.find('#bayaR').onclick = ()=>{
 			this.payment.init();
 		}
 	},
@@ -258,7 +289,7 @@ const app = {
 					</div>
 				`,
 			}));
-			bound.querySelector('#closE').onclick = ()=>{bound.remove()};
+			bound.find('#closE').onclick = ()=>{bound.remove()};
 		},
 		pay(){
 
@@ -266,6 +297,112 @@ const app = {
 		init(){
 			this.open();
 		}
+	},
+	openMobileMenu(){
+		const bound = this.openPop();
+		bound.appendChild(this.makeElement('div',{
+			id:'mobileMenu',
+			innerHTML:`
+				<style>
+					#mobileMenu{
+						position:absolute;
+						top:0;
+						text-align:center;
+						background:white;
+						font-size:25px;
+					}
+					#mobileMenu div{
+						margin:15px;
+					}
+				</style>
+				<div>
+					<span id=kursus>Kursus</span>
+				</div>
+				<div>
+					<span id=aboutUs>Tentang Kami</span>
+				</div>
+				<div>
+					<span id=admin>ADMIN</span>
+				</div>
+				<div>
+					<span class=bWhiteBlack id=closE>TUTUP</span>
+				</div>
+			`,
+		}));
+		let closeSpan = bound.find('#closE');
+		closeSpan.onclick = ()=>bound.remove();
+		bound.findall('span').forEach((span,i)=>{
+			if(i<=2){
+				span.onclick = ()=>{
+					closeSpan.click();
+					this.eventButton[span.id]();
+				}
+			}
+		})
+		
+	},
+	verifyAdmin(){
+		const bound = this.openPop();
+		bound.appendChild(this.makeElement('div',{
+			id:'verifyPanel',
+			innerHTML:`
+				<style>
+					#verifyPanel{
+						background:white;
+						padding:20px;
+					}
+					#verifyPanel div{
+						margin-top:20px;
+					}
+					#verifyPanel #navigation{
+						display:flex;
+						justify-content:space-between;
+					}
+				</style>
+				<div id=top>
+					<span id=invalidmsg style=color:red></span><br>
+					<span>Verify your indentity.</span>
+				</div>
+				<div id=body>
+					<div>
+						<input placeholder=Username id=username>
+					</div>
+					<div>
+						<input placeholder=Password type=password id=password>
+					</div>
+				</div>
+				<div id=navigation>
+					<div>
+						<span class=bWhiteBlack id=loginB>LOGIN</span>
+					</div>
+					<div>
+						<span class=bWhiteBlack id=closE>TUTUP</span>
+					</div>
+				</div>
+			`,
+		}));
+		const closebutton = bound.find('#closE');
+		closebutton.onclick = ()=>bound.remove();
+		bound.find('#loginB').onclick = ()=>this.passchck(
+			bound.find('#username').value,
+			bound.find('#password').value,
+			closebutton,bound.find('#invalidmsg')
+		);
+	},
+	passchck(username,password,closebutton,invalidmsg){
+		cOn.post({
+			url:'/verifyAdmin',
+			data:JSON.stringify({username,password}),
+			onload(res){
+				const data = JSON.parse(this.response);
+				if(data.valid){
+					closebutton.click();
+					location.href += (data.route+'?page=adminPanel');
+				}else{
+					invalidmsg.innerText = data.msg;
+				}
+			}
+		})
 	}
 }
 app.init();
