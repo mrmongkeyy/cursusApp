@@ -1,6 +1,7 @@
 body{
 	margin:0;
 	padding:0;
+	background:black;
 }
 #bound{
 	position:absolute;
@@ -15,7 +16,7 @@ body{
 	display:flex;
 	align-items:center;
 	justify-content:center;
-	background:rgb(255, 221, 131,0.5);
+	background:rgb(0,0,0,0.5);
 }
 #bound-container{
 	background:white;
@@ -60,8 +61,8 @@ main #bottom div{
 	text-align:center;
 }
 main #bottom div span{
-	background:black;
-	color:white;
+	background:white;
+	color:black;
 }
 .content-item{
 	margin:2%;
@@ -112,12 +113,13 @@ main #bottom div span{
 .showContentPage #top{
 	display:flex;
 	align-items:center;
-	background:black;
+	background:white;
+	border-bottom:1px solid black;
 	padding:20px;
+	color:black;
 }
 .showContentPage #top div{
 	width:50%;
-	color:white;
 }
 .showContentPage #bottom{
 	display:flex;

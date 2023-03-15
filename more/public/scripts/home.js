@@ -79,7 +79,8 @@ const app = {
 						display:flex;
 						align-items:center;
 						padding:2%;
-						background:burlywood;
+						background:beige;
+						border-bottom:1px solid black;
 					}
 					#bound-top div{
 						font-size:20px;
@@ -230,7 +231,7 @@ const app = {
 			innerHTML:`
 				<div id=top>
 					<div style=text-align:left;>Confirmasi Pembelian</div>
-					<div style=text-align:right><span class=bBlackWhite id=closE>Tutup</span></div>
+					<div style=text-align:right><span class=bWhiteBlack id=closE>Tutup</span></div>
 				</div>
 				<div id=bottom>
 					<div>
